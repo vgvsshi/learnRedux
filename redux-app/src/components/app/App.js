@@ -1,8 +1,17 @@
 import React from 'react';
+import AppHeader from '../appHeader';
+import { MainPage, CartPage } from '../pages';
+import './app.scss';
 
 function App() {
 	return (
-		<h1>Hello World!</h1>
+		<>
+			<AppHeader />
+			<div className='Wrapper'>
+				<MainPage />
+				<CartPage />
+			</div>
+		</>
 	);
 }
 

@@ -1,0 +1,36 @@
+.cartWrapper {
+	margin-top: 30px;
+	text-align: center;
+	width: 1000px;
+	font-size: 40px;
+	font-weight: bold;
+	.cartList {
+		display: flex;
+		flex-direction: column;
+		.cartItem {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: #b2d0ff;
+			border-radius: 20px;
+			margin-bottom: 20px;
+			img {
+				width: 200px;
+				border-radius: 20px;
+			}
+			.cartitemTitle {
+				font-size: 25px;
+				font-weight: bold;
+			}
+			.cartItemPrice {
+				font-size: 25px;
+				font-weight: bold;
+			}
+			.cartClose {
+				font-size: 50px;
+				font-weight: bold;
+				margin-right: 20px;
+			}
+		}
+	}
+}
