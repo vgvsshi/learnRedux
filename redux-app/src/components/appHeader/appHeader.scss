@@ -1,6 +1,9 @@
 .navWrapper {
+	// position: fixed;
 	background-color: black;
 	color: white;
+	z-index: 10;
+	min-width: 100%;
 	.navBar {
 		height: 100px;
 		max-width: 600px;

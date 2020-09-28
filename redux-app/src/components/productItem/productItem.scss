@@ -1,15 +1,16 @@
 .itemWrapper {
 	background-color: #bbb6ff;
-	width: 350px;
-	height: 400px;
+	// width: 350px;
+	// height: 400px;
+	flex: 0 1 33.333%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
 	border-radius: 50px;
 	color: white;
-	margin-right: 30px;
-	margin-bottom: 30px;
+	padding: 20px 0;
+	margin: 0 -30px 30px -30px;
 
 	.itemTitle {
 		font-weight: bold;
