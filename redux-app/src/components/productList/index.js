@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ProductItem from '../productItem';
 import './productList.scss';
+import '../productItem/productItem.scss'
 import { connect } from 'react-redux';
 import { productLoaded } from '../../actions';
+import Base from '../../services';
 
+class ProductList extends Component {
 
+	serv = new Base();
 
-const ProductList = () => {
-	return (
-		<div className='productList'>
-			<ProductItem />
-		</div>
-	)
+	componentDidMount() {
+		this.serv.getProducts()
+			.then(res => this.props.productLoaded(res));
+	}
+
+	render() {
+		const { productItems } = this.props;
+		console.log(productItems);
+		const items = productItems.map((productItem, index) => {
+			return (
+				<ProductItem key={index} productItem={productItem} />
+			)
+		})
+
+		console.log(items)
+
+		return (
+			<View items={items} />
+		)
+	}
 }
 
 const mapStateToProps = (state) => {
@@ -21,7 +39,16 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	productLoaded
+	productLoaded: productLoaded
+}
+
+const View = ({ items }) => {
+
+	return (
+		<ul className="productList">
+			{items}
+		</ul>
+	)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

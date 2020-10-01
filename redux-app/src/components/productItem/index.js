@@ -1,23 +1,21 @@
 import React from 'react';
 import './productItem.scss'
 
-const ProductItem = (menuItem) => {
+const ProductItem = ({ productItem }) => {
 	return (
-		<>
-			<div className='itemWrapper'>
-				<div className='itemTitle'>
-					{menuItem.title}
-				</div>
-				<img src={menuItem.url} alt="Диван"></img>
-				<div className='itemCategory'>
-					Категория: {menuItem.category}
-				</div>
-				<div className='itemPrice'>
-					Цена: {menuItem.price}
-				</div>
-				<a href='/'>Добавить в корзину</a>
+		<li className='itemWrapper'>
+			<div className='itemTitle'>
+				{productItem.title}
 			</div>
-		</>
+			<img src={productItem.url} alt="Диван"></img>
+			<div className='itemCategory'>
+				Категория: {productItem.category}
+			</div>
+			<div className='itemPrice'>
+				Цена: {productItem.price}
+			</div>
+			<a href='/'>Добавить в корзину</a>
+		</li>
 	)
 }
 
