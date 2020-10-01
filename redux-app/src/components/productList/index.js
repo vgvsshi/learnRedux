@@ -2,7 +2,9 @@ import React from 'react';
 import ProductItem from '../productItem';
 import './productList.scss';
 import { connect } from 'react-redux';
-import { }
+import { productLoaded } from '../../actions';
+
+
 
 const ProductList = () => {
 	return (
@@ -11,4 +13,15 @@ const ProductList = () => {
 		</div>
 	)
 }
-export default ProductList;
+
+const mapStateToProps = (state) => {
+	return {
+		productItems: state.productList
+	}
+}
+
+const mapDispatchToProps = {
+	productLoaded
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
