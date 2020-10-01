@@ -1,6 +1,7 @@
 import React from 'react';
 import AppHeader from '../appHeader';
 import { MainPage, CartPage } from '../pages';
+import Base from '../../services';
 import './app.scss';
 
 function App() {
