@@ -3,7 +3,7 @@ import ProductItem from '../productItem';
 import './productList.scss';
 import '../productItem/productItem.scss'
 import { connect } from 'react-redux';
-import { productLoaded } from '../../actions';
+import { productLoaded, addedToCard } from '../../actions';
 import Base from '../../services';
 
 class ProductList extends Component {
@@ -12,15 +12,15 @@ class ProductList extends Component {
 
 	componentDidMount() {
 		this.serv.getProducts()
-			.then(res => this.props.productLoaded(res));
+			.then(data => this.props.productLoaded(data));
 	}
 
 	render() {
-		const { productItems } = this.props;
+		const { productItems, addedToCard } = this.props;
 		console.log(productItems);
 		const items = productItems.map((productItem, index) => {
 			return (
-				<ProductItem key={index} productItem={productItem} />
+				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
 			)
 		})
 
@@ -39,7 +39,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	productLoaded: productLoaded
+	productLoaded: productLoaded,
+	addedToCard
 }
 
 const View = ({ items }) => {

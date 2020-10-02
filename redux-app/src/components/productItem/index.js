@@ -1,7 +1,7 @@
 import React from 'react';
 import './productItem.scss'
 
-const ProductItem = ({ productItem }) => {
+const ProductItem = ({ productItem, onAddToCard }) => {
 	return (
 		<li className='itemWrapper'>
 			<div className='itemTitle'>
@@ -14,7 +14,7 @@ const ProductItem = ({ productItem }) => {
 			<div className='itemPrice'>
 				Цена: {productItem.price}
 			</div>
-			<a href='/'>Добавить в корзину</a>
+			<button onClick={() => { onAddToCard() }} >Добавить в корзину</button>
 		</li>
 	)
 }
