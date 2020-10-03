@@ -12,7 +12,7 @@ class ProductList extends Component {
 
 	componentDidMount() {
 		this.serv.getProducts()
-			.then(data => this.props.productLoaded(data));
+			.then(data => { this.props.productLoaded(data); console.log(data) });
 	}
 
 	render() {

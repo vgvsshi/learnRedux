@@ -1,7 +1,7 @@
 const initialState = {
 	categoryList: [],
 	productList: [],
-	items: []
+	items: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -16,17 +16,18 @@ const reducer = (state = initialState, action) => {
 				...state,
 				categoryList: action.list
 			};
-		default:
-			return state;
 		case 'ITEM_ADD_TO_CARD':
-			const id = action.payload;
-			const item = state.productList.find(item => item.id === id);
-			const newItem = {
-				title: item.title,
-				price: item.price,
-				url: item.url,
-				id: item.id
-			};
+			const newItem = state.productList.find(item => item.id === action.payload);
+			if (state.items.findIndex(item => item.id === newItem.id) !== -1) {
+				const clone = state.items.find(item => item.id === newItem.id)
+				const newCart = state.items.filter(item => item.id !== newItem.id);
+				clone.amount = clone.amount + 1
+				newCart.push(clone);
+				return {
+					...state,
+					items: newCart
+				};
+			}
 			return {
 				...state,
 				items: [
@@ -44,6 +45,8 @@ const reducer = (state = initialState, action) => {
 					...state.items.slice(itemIndex + 1)
 				]
 			}
+		default:
+			return state;
 	}
 }
 

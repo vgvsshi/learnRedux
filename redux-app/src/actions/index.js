@@ -19,8 +19,19 @@ const deleteFromCard = (id) => {
 	};
 };
 
+const updateCartQuantity = (productId, quantity) => {
+	return {
+		type: 'UPDATE_CART_QUANTITY',
+		payload: {
+			productId,
+			quantity: quantity
+		}
+	}
+};
+
 export {
 	productLoaded,
 	addedToCard,
-	deleteFromCard
+	deleteFromCard,
+	updateCartQuantity
 };
