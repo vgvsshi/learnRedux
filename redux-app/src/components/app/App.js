@@ -1,9 +1,8 @@
 import React from 'react';
 import AppHeader from '../appHeader';
-import { MainPage, CartPage } from '../pages';
+import { MainPage, CartPage, Product } from '../pages';
 import './app.scss';
 import {
-	BrowserRouter as Router,
 	Switch,
 	Route,
 } from "react-router-dom";
@@ -11,15 +10,14 @@ import {
 function App() {
 	return (
 		<>
-			<Router>
-				<AppHeader />
-				<Switch>
-					<div className='Wrapper'>
-						<Route exact path="/"><MainPage /></Route>
-						<Route path="/cart"><CartPage /></Route>
-					</div>
-				</Switch>
-			</Router>
+			<AppHeader />
+			<Switch>
+				<div className='Wrapper'>
+					<Route path="/:ID" component={Product} />
+					<Route exact path="/" component={MainPage} />
+					<Route exact path="/cart" component={CartPage} />
+				</div>
+			</Switch>
 		</>
 	);
 }

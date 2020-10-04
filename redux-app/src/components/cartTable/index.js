@@ -28,7 +28,7 @@ const CartTable = ({ items, deleteFromCard, counter }) => {
 	)
 }
 
-const mapStateToProps = ({ items, counter }) => {
+const mapStateToProps = ({ items }) => {
 	return {
 		items
 	}
