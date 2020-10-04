@@ -1,6 +1,7 @@
 import React from 'react';
 import AppHeader from '../appHeader';
-import { MainPage, CartPage, Product } from '../pages';
+import { MainPage, CartPage } from '../pages';
+import ProductPage from '../productdPage';
 import './app.scss';
 import {
 	Switch,
@@ -13,7 +14,10 @@ function App() {
 			<AppHeader />
 			<Switch>
 				<div className='Wrapper'>
-					<Route path="/:ID" component={Product} />
+					<Route path="/:id" render={({ match }) => {
+						const { id } = match.params;
+						return (<ProductPage productId={id} />)
+					}} />
 					<Route exact path="/" component={MainPage} />
 					<Route exact path="/cart" component={CartPage} />
 				</div>

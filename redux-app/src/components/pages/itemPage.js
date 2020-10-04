@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductPage from '../productdPage';
 
-const Product = () => {
+const Product = ({ productId }) => {
+
 	return (
 		<ProductPage />
 	)

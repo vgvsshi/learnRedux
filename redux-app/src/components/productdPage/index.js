@@ -9,14 +9,15 @@ class ProductPage extends Component {
 
 	componentDidMount() {
 		this.serv.getProducts()
-			.then(data => { this.props.productLoaded(data); });
+			.then(data => {
+				this.props.productLoaded(data)
+			});
 	}
 
 
 	render() {
 		const { productItems, addedToCard } = this.props;
-		const id = this.props.match;
-		const item = productItems.find(el => +el.id === id)
+		const item = productItems.find(item => +item.id === +this.props.productId)
 		const { title, url, category, price } = item;
 		return (
 			<div className='productWrapper'>

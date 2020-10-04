@@ -9,7 +9,6 @@ export default class Base {
 		}
 		return await res.json();
 	}
-
 	async getProducts() {
 		return await this.getResource('/products/');
 	}

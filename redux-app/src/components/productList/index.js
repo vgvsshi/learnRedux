@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ProductItem from '../productItem';
 import './productList.scss';
-import '../productItem/productItem.scss'
 import { connect } from 'react-redux';
 import { productLoaded, addedToCard } from '../../actions';
 import Base from '../../services';
@@ -13,20 +12,15 @@ class ProductList extends Component {
 	componentDidMount() {
 		this.serv.getProducts()
 			.then(data => { this.props.productLoaded(data); });
-		console.log(this.props.match);
 	}
 
 	render() {
 		const { productItems, addedToCard } = this.props;
-		console.log(productItems);
 		const items = productItems.map((productItem, index) => {
 			return (
 				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
 			)
 		})
-
-		console.log(items)
-
 		return (
 			<View items={items} />
 		)
