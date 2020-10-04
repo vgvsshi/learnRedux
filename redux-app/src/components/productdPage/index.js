@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { productLoaded, addedToCard } from '../../actions';
-import Base from '../../services';
+import { addedToCard } from '../../actions';
+import { withRouter } from 'react-router-dom';
 
 class ProductPage extends Component {
 
-	serv = new Base();
-
-	componentDidMount() {
-		this.serv.getProducts()
-			.then(data => {
-				this.props.productLoaded(data)
-			});
-	}
-
-
 	render() {
 		const { productItems, addedToCard } = this.props;
-		const item = productItems.find(item => +item.id === +this.props.productId)
-		const { title, url, category, price } = item;
+		const item = productItems.find(item => +item.id === +this.props.match.params.id);
+		if (item === undefined) {
+			return null;
+		}
+		const { title, url, category, price, id } = item;
 		return (
 			<div className='productWrapper'>
 				<img src={url} alt='alo'></img>
@@ -32,7 +25,7 @@ class ProductPage extends Component {
 					{price}
 				</div>
 				<button onClick={() => {
-					addedToCard(item.id)
+					addedToCard(id)
 				}}>Добавить в корзину</button>
 			</div >
 		)
@@ -46,8 +39,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	productLoaded: productLoaded,
 	addedToCard
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductPage));
