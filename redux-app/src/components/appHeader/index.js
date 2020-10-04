@@ -8,12 +8,17 @@ const AppHeader = ({ items }) => {
 	items.map((item) => {
 		return total = total + item.price * item.amount;
 	})
+	let totalItems = 0;
+	items.map((item) => {
+		return totalItems = totalItems + item.amount
+	})
 	return (
 		<div className='navWrapper'>
 			<div className='navBar'>
 				<ul className='navList'>
 					<li className='navItem'><Link to='/'>Main Page</Link></li>
 					<li className='navItem'><Link to='/cart'>Cart</Link></li>
+					<li className='navItem badge'>{totalItems}</li>
 					<li className='navItem'>Total: {total}$</li>
 				</ul>
 			</div>

@@ -4,6 +4,10 @@
 	color: white;
 	z-index: 10;
 	min-width: 100%;
+	a {
+		text-decoration: none;
+		color: white;
+	}
 	.navBar {
 		height: 100px;
 		max-width: 600px;
@@ -11,11 +15,25 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		position: relative;
 		.navList {
 			width: 100%;
 			display: flex;
 			justify-content: space-between;
 			font-size: 25px;
+		}
+		.badge {
+			width: 20px;
+			height: 20px;
+			background-color: grey;
+			border-radius: 50%;
+			position: absolute;
+			left: 335px;
+			top: 40px;
+			font-size: 15px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 }
