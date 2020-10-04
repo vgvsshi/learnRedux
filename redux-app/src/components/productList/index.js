@@ -3,7 +3,6 @@ import ProductItem from '../productItem';
 import './productList.scss';
 import { connect } from 'react-redux';
 import { productLoaded, addedToCard } from '../../actions';
-// import Base from '../../services';
 
 class ProductList extends Component {
 

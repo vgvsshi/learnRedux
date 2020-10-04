@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addedToCard } from '../../actions';
 import { withRouter } from 'react-router-dom';
+import './productPage.scss';
 
 class ProductPage extends Component {
 
@@ -22,7 +23,7 @@ class ProductPage extends Component {
 					{category}
 				</div>
 				<div className='prodPrice'>
-					{price}
+					{price}$
 				</div>
 				<button onClick={() => {
 					addedToCard(id)
