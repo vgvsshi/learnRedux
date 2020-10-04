@@ -27,14 +27,16 @@ const reducer = (state = initialState, action) => {
 					...state,
 					items: newCart
 				};
+			} else {
+				newItem.amount = 1;
+				return {
+					...state,
+					items: [
+						...state.items,
+						newItem
+					]
+				};
 			}
-			return {
-				...state,
-				items: [
-					...state.items,
-					newItem
-				]
-			};
 		case 'ITEM_REMOVE_FROM_CARD':
 			const idx = action.payload;
 			const itemIndex = state.items.findIndex(item => item.id === idx);
