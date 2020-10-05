@@ -1,24 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ProductItem from '../productItem';
 import './productList.scss';
 import { connect } from 'react-redux';
 import { productLoaded, addedToCard } from '../../actions';
 
-class ProductList extends Component {
+const ProductList = ({ productItems, addedToCard }) => {
 
-	render() {
-		const { productItems, addedToCard } = this.props;
-		const items = productItems.map((productItem, index) => {
-			return (
-				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
-			)
-		})
+	const items = productItems.map((productItem, index) => {
 		return (
-			<View items={items} />
+			<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
 		)
-	}
+	})
+	return (
+		<View items={items} />
+	)
 }
-
 const mapStateToProps = (state) => {
 	return {
 		productItems: state.productList

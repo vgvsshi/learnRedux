@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
 				]
 			};
 		case 'AMOUNT_INC':
-			const incProd = state.productList.find(prod => prod.id === action.payload);
+			const incProd = state.items.find(prod => prod.id === action.payload);
 			incProd.amount = incProd.amount + 1;
 			const incCart = state.items.filter(item => item.id !== incProd.id);
 			incCart.push(incProd);
@@ -57,7 +57,7 @@ const reducer = (state = initialState, action) => {
 				items: incCart
 			};
 		case 'AMOUNT_DEC':
-			const decProd = state.productList.find(prod => prod.id === action.payload);
+			const decProd = state.items.find(prod => prod.id === action.payload);
 			if (decProd.amount === 1) {
 				decProd.amount = 1;
 				const decCart = state.items.filter(item => item.id !== decProd.id);

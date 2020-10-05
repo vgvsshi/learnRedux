@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import AppHeader from '../appHeader';
 import { MainPage, CartPage } from '../pages';
 import ProductPage from '../productdPage';
@@ -12,29 +12,27 @@ import { productLoaded } from '../../actions';
 import { connect } from 'react-redux';
 
 
-class App extends Component {
+const App = ({ productLoaded, productItems, }) => {
 
-	serv = new Base();
+	const serv = new Base();
 
-	componentDidMount() {
-		this.serv.getProducts()
-			.then(data => this.props.productLoaded(data));
-	}
-	render() {
-		return this.props.productItems.length > 0 ? (
-			<>
-				<AppHeader />
-				<Switch>
-					<div className='Wrapper'>
-						<Route exact path="/cart" component={CartPage} />
-						<Route path="/product/:id" component={ProductPage} />
-						<Route exact path="/" component={MainPage} />
-					</div>
-				</Switch>
-			</>
-		) :
-			(null)
-	}
+	useEffect(() => {
+		serv.getProducts()
+			.then(data => productLoaded(data));
+	})
+	return productItems.length > 0 ? (
+		<>
+			<AppHeader />
+			<Switch>
+				<div className='Wrapper'>
+					<Route exact path="/cart" component={CartPage} />
+					<Route path="/product/:id" component={ProductPage} />
+					<Route exact path="/" component={MainPage} />
+				</div>
+			</Switch>
+		</>
+	) :
+		(null)
 }
 const mapStateToProps = (state) => {
 	return {
