@@ -24,11 +24,13 @@ const App = ({ productLoaded, productItems, }) => {
 		<>
 			<AppHeader />
 			<Switch>
-				<div className='Wrapper'>
-					<Route exact path="/cart" component={CartPage} />
-					<Route path="/product/:id" component={ProductPage} />
-					<Route exact path="/" component={MainPage} />
-				</div>
+				<>
+					<div className='Wrapper'>
+						<Route exact path="/cart" component={CartPage} />
+						<Route path="/product/:id" component={ProductPage} />
+						<Route exact path="/" component={MainPage} />
+					</div>
+				</>
 			</Switch>
 		</>
 	) :
