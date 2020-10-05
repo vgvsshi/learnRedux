@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addedToCard } from '../../actions';
+import { addedToCard, productLoaded } from '../../actions';
 import { withRouter } from 'react-router-dom';
 import './productPage.scss';
 
 class ProductPage extends Component {
 
+
 	render() {
 		const { productItems, addedToCard } = this.props;
 		const item = productItems.find(item => +item.id === +this.props.match.params.id);
-		if (item === undefined) {
-			return null;
-		}
 		const { title, url, category, price, id } = item;
 		return (
 			<div className='productWrapper'>
@@ -40,7 +38,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	addedToCard
+	addedToCard,
+	productLoaded
 }
 
 

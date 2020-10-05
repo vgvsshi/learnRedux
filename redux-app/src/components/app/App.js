@@ -18,21 +18,22 @@ class App extends Component {
 
 	componentDidMount() {
 		this.serv.getProducts()
-			.then(data => { this.props.productLoaded(data); });
+			.then(data => this.props.productLoaded(data));
 	}
 	render() {
-		return (
+		return this.props.productItems.length > 0 ? (
 			<>
 				<AppHeader />
 				<Switch>
 					<div className='Wrapper'>
-						<Route path="/:id" component={ProductPage} />
-						<Route exact path="/" component={MainPage} />
 						<Route exact path="/cart" component={CartPage} />
+						<Route path="/product/:id" component={ProductPage} />
+						<Route exact path="/" component={MainPage} />
 					</div>
 				</Switch>
 			</>
-		);
+		) :
+			(null)
 	}
 }
 const mapStateToProps = (state) => {

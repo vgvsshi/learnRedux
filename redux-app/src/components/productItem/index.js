@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ProductItem = ({ productItem, onAddToCard }) => {
 	return (
 		<div className='itemWrapper'>
-			<Link to={`/${productItem.id}`}>
+			<Link to={`/product/${productItem.id}`}>
 				<div className='itemTitle'>
 					{productItem.title}
 				</div>
@@ -17,7 +17,7 @@ const ProductItem = ({ productItem, onAddToCard }) => {
 					Цена: {productItem.price}
 				</div>
 			</Link>
-			<button onClick={() => { onAddToCard() }} >Добавить в корзину</button>
+			<button className='btn' onClick={() => { onAddToCard() }} >Добавить в корзину</button>
 		</div>
 	)
 }
