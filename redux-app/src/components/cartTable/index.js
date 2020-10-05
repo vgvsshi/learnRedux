@@ -3,13 +3,16 @@ import './cartTable.scss';
 import { connect } from 'react-redux';
 import { deleteFromCard, incAmount, decAmount } from '../../actions';
 const CartTable = ({ items, deleteFromCard, decAmount, incAmount }) => {
+	const byField = (field) => {
+		return (a, b) => a[field] > b[field] ? 1 : -1;
+	}
 	return (
 		<>
 			<div className='cartWrapper'>
 				Ваш заказ:
 				<div className='cartList'>
 					{
-						items.sort((a, b) => a.title > b.title ? 1 : -1).map(item => {
+						items.sort(byField('price')).map(item => {
 							const { title, price, url, id, amount } = item;
 							return (
 								<div key={id} className="cartItem">
