@@ -5,6 +5,7 @@
 	width: 100%;
 	font-size: 40px;
 	font-weight: bold;
+	color: black;
 	.cartList {
 		display: flex;
 		flex-direction: column;
@@ -36,6 +37,12 @@
 			.amount {
 				font-size: 30px;
 				margin-right: 30px;
+			}
+			.dec {
+				cursor: pointer;
+			}
+			.inc {
+				cursor: pointer;
 			}
 		}
 	}

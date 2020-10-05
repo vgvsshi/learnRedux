@@ -19,19 +19,24 @@ const deleteFromCard = (id) => {
 	};
 };
 
-const updateCartQuantity = (productId, quantity) => {
+const incAmount = (id) => {
 	return {
-		type: 'UPDATE_CART_QUANTITY',
-		payload: {
-			productId,
-			quantity: quantity
-		}
-	}
+		type: 'AMOUNT_INC',
+		payload: id
+	};
+};
+
+const decAmount = (id) => {
+	return {
+		type: 'AMOUNT_DEC',
+		payload: id
+	};
 };
 
 export {
 	productLoaded,
 	addedToCard,
 	deleteFromCard,
-	updateCartQuantity
+	incAmount,
+	decAmount
 };

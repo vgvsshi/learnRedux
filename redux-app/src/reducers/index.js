@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
 						newItem
 					]
 				};
-			}
+			};
 		case 'ITEM_REMOVE_FROM_CARD':
 			const idx = action.payload;
 			const itemIndex = state.items.findIndex(item => item.id === idx);
@@ -46,7 +46,34 @@ const reducer = (state = initialState, action) => {
 					...state.items.slice(0, itemIndex),
 					...state.items.slice(itemIndex + 1)
 				]
+			};
+		case 'AMOUNT_INC':
+			const incProd = state.productList.find(prod => prod.id === action.payload);
+			incProd.amount = incProd.amount + 1;
+			const incCart = state.items.filter(item => item.id !== incProd.id);
+			incCart.push(incProd);
+			return {
+				...state,
+				items: incCart
+			};
+		case 'AMOUNT_DEC':
+			const decProd = state.productList.find(prod => prod.id === action.payload);
+			if (decProd.amount === 0) {
+				decProd.amount = 0;
+				const decCart = state.items.filter(item => item.id !== decProd.id);
+				decCart.push(decProd);
+				return {
+					...state,
+					items: decCart
+				};
 			}
+			decProd.amount = decProd.amount - 1;
+			const decCart = state.items.filter(item => item.id !== decProd.id);
+			decCart.push(decProd);
+			return {
+				...state,
+				items: decCart
+			};
 		default:
 			return state;
 	}

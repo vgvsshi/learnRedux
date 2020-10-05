@@ -1,8 +1,8 @@
 import React from 'react';
 import './cartTable.scss';
 import { connect } from 'react-redux';
-import { deleteFromCard } from '../../actions';
-const CartTable = ({ items, deleteFromCard, counter }) => {
+import { deleteFromCard, incAmount, decAmount } from '../../actions';
+const CartTable = ({ items, deleteFromCard, decAmount, incAmount }) => {
 	return (
 		<>
 			<div className='cartWrapper'>
@@ -17,7 +17,9 @@ const CartTable = ({ items, deleteFromCard, counter }) => {
 									<div className="cartitemTitle">{title}</div>
 									<div className="cartItemPrice">{price}$</div>
 									<div onClick={() => deleteFromCard(id)} className="cartClose">&times;</div>
+									<div onClick={() => decAmount(id)} className='dec'>-</div>
 									<div className='amount'>{amount}</div>
+									<div onClick={() => incAmount(id)} className='inc'>+</div>
 								</div>
 							)
 						})
@@ -35,7 +37,9 @@ const mapStateToProps = ({ items }) => {
 };
 
 const mapDispatchToProps = {
-	deleteFromCard
+	deleteFromCard,
+	decAmount,
+	incAmount
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartTable);
