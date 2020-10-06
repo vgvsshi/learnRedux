@@ -1,28 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductItem from '../productItem';
 import './productList.scss';
 import { connect } from 'react-redux';
-import { productLoaded, addedToCard } from '../../actions';
+import { addedToCard } from '../../actions';
 
-const ProductList = ({ productItems, addedToCard }) => {
+const ProductList = ({ productItems, addedToCard, categoryItems }) => {
 
-	const items = productItems.map((productItem, index) => {
+	const [chosenCategory, changeCategory] = useState('стулья');
+
+	const items = productItems.filter(item => item.category === chosenCategory).map((productItem, index) => {
 		return (
 			<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
 		)
 	})
+	const categorys = categoryItems.map((category, id) => {
+		return (
+			<li onClick={() => { changeCategory(category) }} key={id} className={chosenCategory === category ? 'categoryItem active' : 'categoryItem'}>
+				{category}
+			</li>
+		)
+	})
 	return (
-		<View items={items} />
+		<div className='listwrap'>
+			<ul className='categoryList'>
+				{categorys}
+			</ul>
+			<View items={items} />
+		</div >
 	)
 }
 const mapStateToProps = (state) => {
 	return {
-		productItems: state.productList
+		productItems: state.productList,
+		categoryItems: state.categoryList
 	}
 }
 
 const mapDispatchToProps = {
-	productLoaded: productLoaded,
 	addedToCard
 }
 

@@ -22,7 +22,6 @@ const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => 
 		serv.getCategoryList()
 			.then(data => categoryLoaded(data));
 	}, [])
-	console.log(categoryItems);
 	return productItems.length > 0 && categoryItems.length > 0 ? (
 		<>
 			<AppHeader />
