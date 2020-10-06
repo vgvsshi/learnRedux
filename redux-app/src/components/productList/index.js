@@ -12,21 +12,19 @@ const ProductList = ({ productItems, addedToCard, categoryItems }) => {
 		return (a, b) => a[field] > b[field] ? 1 : -1;
 	}
 
-	let items = [];
 
-	if (chosenCategory !== 'Все') {
-		items = productItems.filter(item => item.category === chosenCategory).sort(byField('title')).map((productItem, index) => {
+	let items = chosenCategory !== 'Все' ?
+		productItems.filter(item => item.category === chosenCategory).sort(byField('title')).map((productItem, index) => {
 			return (
 				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
 			)
 		})
-	} else {
-		items = productItems.sort(byField('title')).map((productItem, index) => {
+		:
+		productItems.sort(byField('title')).map((productItem, index) => {
 			return (
 				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
 			)
-		})
-	}
+		});
 
 	const categorys = categoryItems.map((category, id) => {
 		return (
