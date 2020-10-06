@@ -5,6 +5,13 @@ const productLoaded = (newProduct) => {
 	};
 };
 
+const categoryLoaded = (newProduct) => {
+	return {
+		type: "CATEGORY_LOADED",
+		list: newProduct
+	};
+};
+
 const addedToCard = (id) => {
 	return {
 		type: 'ITEM_ADD_TO_CARD',
@@ -38,5 +45,6 @@ export {
 	addedToCard,
 	deleteFromCard,
 	incAmount,
-	decAmount
+	decAmount,
+	categoryLoaded
 };
