@@ -6,13 +6,24 @@ import { addedToCard } from '../../actions';
 
 const ProductList = ({ productItems, addedToCard, categoryItems }) => {
 
-	const [chosenCategory, changeCategory] = useState('стулья');
+	const [chosenCategory, changeCategory] = useState('Все');
 
-	const items = productItems.filter(item => item.category === chosenCategory).map((productItem, index) => {
-		return (
-			<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
-		)
-	})
+	let items = [];
+
+	if (chosenCategory !== 'Все') {
+		items = productItems.filter(item => item.category === chosenCategory).map((productItem, index) => {
+			return (
+				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
+			)
+		})
+	} else {
+		items = productItems.map((productItem, index) => {
+			return (
+				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
+			)
+		})
+	}
+
 	const categorys = categoryItems.map((category, id) => {
 		return (
 			<li onClick={() => { changeCategory(category) }} key={id} className={chosenCategory === category ? 'categoryItem active' : 'categoryItem'}>
@@ -23,6 +34,7 @@ const ProductList = ({ productItems, addedToCard, categoryItems }) => {
 	return (
 		<div className='listwrap'>
 			<ul className='categoryList'>
+				<li onClick={() => { changeCategory('Все') }} className={chosenCategory === 'Все' ? 'categoryItem active' : 'categoryItem'}>Все</li>
 				{categorys}
 			</ul>
 			<View items={items} />
