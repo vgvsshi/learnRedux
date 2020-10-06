@@ -8,19 +8,22 @@ import {
 	Route,
 } from "react-router-dom";
 import Base from '../../services';
-import { productLoaded } from '../../actions';
+import { productLoaded, categoryLoaded } from '../../actions';
 import { connect } from 'react-redux';
 
 
-const App = ({ productLoaded, productItems, }) => {
+const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => {
 
 	const serv = new Base();
 
 	useEffect(() => {
 		serv.getProducts()
 			.then(data => productLoaded(data));
-	})
-	return productItems.length > 0 ? (
+		serv.getCategoryList()
+			.then(data => categoryLoaded(data));
+	}, [])
+	console.log(categoryItems);
+	return productItems.length > 0 && categoryItems.length > 0 ? (
 		<>
 			<AppHeader />
 			<Switch>
@@ -38,11 +41,13 @@ const App = ({ productLoaded, productItems, }) => {
 }
 const mapStateToProps = (state) => {
 	return {
-		productItems: state.productList
+		productItems: state.productList,
+		categoryItems: state.categoryList
 	}
 }
 const mapDispatchToProps = {
-	productLoaded: productLoaded,
+	productLoaded,
+	categoryLoaded
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
