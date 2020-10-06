@@ -12,7 +12,7 @@ const CartTable = ({ items, deleteFromCard, decAmount, incAmount }) => {
 				Ваш заказ:
 				<div className='cartList'>
 					{
-						items.sort(byField('price')).map(item => {
+						items.sort(byField('title')).map(item => {
 							const { title, price, url, id, amount } = item;
 							return (
 								<div key={id} className="cartItem">
