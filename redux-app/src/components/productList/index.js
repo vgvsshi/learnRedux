@@ -8,16 +8,20 @@ const ProductList = ({ productItems, addedToCard, categoryItems }) => {
 
 	const [chosenCategory, changeCategory] = useState('Все');
 
+	const byField = (field) => {
+		return (a, b) => a[field] > b[field] ? 1 : -1;
+	}
+
 	let items = [];
 
 	if (chosenCategory !== 'Все') {
-		items = productItems.filter(item => item.category === chosenCategory).map((productItem, index) => {
+		items = productItems.filter(item => item.category === chosenCategory).sort(byField('title')).map((productItem, index) => {
 			return (
 				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
 			)
 		})
 	} else {
-		items = productItems.map((productItem, index) => {
+		items = productItems.sort(byField('title')).map((productItem, index) => {
 			return (
 				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
 			)
