@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addedToCard, productLoaded } from '../../actions';
 import { withRouter } from 'react-router-dom';
@@ -9,6 +9,11 @@ const ProductPage = ({ productItems, addedToCard, match }) => {
 
 	const item = productItems.find(item => +item.id === +match.params.id);
 	const { title, url, category, price, id } = item;
+	const [amount, setAmount] = useState(1);
+	const updateInputValue = (event) => {
+		console.log(amount)
+		setAmount(event.target.value);
+	}
 	return (
 		<div className='productWrapper'>
 			<img src={url} alt='alo'></img>
@@ -20,7 +25,14 @@ const ProductPage = ({ productItems, addedToCard, match }) => {
 			</div>
 			<div className='prodPrice'>
 				{price}$
-				</div>
+			</div>
+			<div className='inc'>
+				+
+			</div>
+			<input type='text' className='input' value={amount} onChange={updateInputValue}></input>
+			<div className='inc'>
+				-
+			</div>
 			<button onClick={() => {
 				addedToCard(id)
 			}}>Добавить в корзину</button>
