@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
 				categoryList: action.list
 			};
 		case 'ITEM_ADD_TO_CARD':
-			const newItem = state.productList.find(item => item.id === action.payload);
+			let newItem = state.productList.find(item => item.id === action.payload);
 			if (state.items.findIndex(item => item.id === newItem.id) !== -1) {
 				const clone = state.items.find(item => item.id === newItem.id)
 				const newCart = state.items.filter(item => item.id !== newItem.id);
@@ -29,6 +29,27 @@ const reducer = (state = initialState, action) => {
 				};
 			} else {
 				newItem.amount = 1;
+				return {
+					...state,
+					items: [
+						...state.items,
+						newItem
+					]
+				};
+			};
+		case 'ITEM_ADD_TO_CARD_WITH_AMOUNT':
+			newItem = state.productList.find(item => item.id === action.payload);
+			if (state.items.findIndex(item => item.id === newItem.id) !== -1) {
+				const clone = state.items.find(item => item.id === newItem.id)
+				const newCart = state.items.filter(item => item.id !== newItem.id);
+				clone.amount = clone.amount + action.amount
+				newCart.push(clone);
+				return {
+					...state,
+					items: newCart
+				};
+			} else {
+				newItem.amount = action.amount;
 				return {
 					...state,
 					items: [

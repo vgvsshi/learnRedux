@@ -26,11 +26,11 @@ const ProductPage = ({ productItems, addedToCard, match }) => {
 			<div className='prodPrice'>
 				{price}$
 			</div>
-			<div className='inc'>
+			<div className='inc' onClick={() => { setAmount(amount + 1) }}>
 				+
 			</div>
 			<input type='text' className='input' value={amount} onChange={updateInputValue}></input>
-			<div className='inc'>
+			<div className='inc' onClick={() => { amount === 1 ? setAmount(1) : setAmount(amount - 1) }}>
 				-
 			</div>
 			<button onClick={() => {
