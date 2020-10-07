@@ -19,6 +19,15 @@ const addedToCard = (id) => {
 	};
 };
 
+const addedToCardWithAmount = (id, amount) => {
+	return {
+		type: 'ITEM_ADD_TO_CARD_WITH_AMOUNT',
+		payload: id,
+		amount: amount
+	};
+};
+
+
 const deleteFromCard = (id) => {
 	return {
 		type: 'ITEM_REMOVE_FROM_CARD',
