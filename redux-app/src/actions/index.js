@@ -55,5 +55,6 @@ export {
 	deleteFromCard,
 	incAmount,
 	decAmount,
-	categoryLoaded
+	categoryLoaded,
+	addedToCardWithAmount
 };

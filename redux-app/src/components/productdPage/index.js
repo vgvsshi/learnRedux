@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addedToCard, productLoaded } from '../../actions';
+import { addedToCardWithAmount, productLoaded } from '../../actions';
 import { withRouter } from 'react-router-dom';
 import './productPage.scss';
 
-const ProductPage = ({ productItems, addedToCard, match }) => {
+const ProductPage = ({ productItems, addedToCardWithAmount, match }) => {
 
 
 	const item = productItems.find(item => +item.id === +match.params.id);
@@ -29,12 +29,12 @@ const ProductPage = ({ productItems, addedToCard, match }) => {
 			<div className='inc' onClick={() => { setAmount(amount + 1) }}>
 				+
 			</div>
-			<input type='text' className='input' value={amount} onChange={updateInputValue}></input>
+			<input type='' className='input' value={amount} onChange={updateInputValue}></input>
 			<div className='inc' onClick={() => { amount === 1 ? setAmount(1) : setAmount(amount - 1) }}>
 				-
 			</div>
 			<button onClick={() => {
-				addedToCard(id)
+				addedToCardWithAmount(id, amount)
 			}}>Добавить в корзину</button>
 		</div >
 	)
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	addedToCard,
+	addedToCardWithAmount,
 	productLoaded
 }
 
