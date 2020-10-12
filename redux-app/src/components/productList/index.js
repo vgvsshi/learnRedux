@@ -7,24 +7,33 @@ import { addedToCard } from '../../actions';
 const ProductList = ({ productItems, addedToCard, categoryItems }) => {
 
 	const [chosenCategory, changeCategory] = useState('Все');
+	const [chosenPrice, changePrice] = useState();
+
+	function filterByCategory(array) {
+		if (chosenCategory === 'Все') {
+			return array;
+		} else {
+			return array.filter(item => item.category === chosenCategory);
+		}
+	}
+	function filterByPrice(array) {
+		if (array.filter(item => item.price === chosenPrice)) {
+			return array.filter(item => item.price === chosenPrice)
+		} else {
+			return array;
+		}
+	}
 
 	const byField = (field) => {
 		return (a, b) => a[field] > b[field] ? 1 : -1;
 	}
 
 
-	let items = chosenCategory !== 'Все' ?
-		productItems.filter(item => item.category === chosenCategory).sort(byField('title')).map((productItem, index) => {
-			return (
-				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
-			)
-		})
-		:
-		productItems.sort(byField('title')).map((productItem, index) => {
-			return (
-				<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
-			)
-		});
+	let items = filterByCategory(productItems).sort(byField('title')).map((productItem, index) => {
+		return (
+			<ProductItem key={index} productItem={productItem} onAddToCard={() => addedToCard(productItem.id)} />
+		)
+	})
 
 	const categorys = categoryItems.map((category, id) => {
 		return (
