@@ -1,0 +1,29 @@
+{
+	"name": "learnredux",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"server": "nodemon app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vgvsshi/learnRedux.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/vgvsshi/learnRedux/issues"
+	},
+	"homepage": "https://github.com/vgvsshi/learnRedux#readme",
+	"dependencies": {
+		"config": "^3.3.2",
+		"express": "^4.17.1",
+		"mongoose": "^5.10.11"
+	},
+	"devDependencies": {
+		"concurrently": "^5.3.0",
+		"nodemon": "^2.0.6"
+	}
+}
