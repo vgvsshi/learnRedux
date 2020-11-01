@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 import AppHeader from '../appHeader';
 import { MainPage, CartPage } from '../pages';
 import ProductPage from '../productdPage';
-import './app.scss';
-import {
-	Switch,
-	Route,
-} from "react-router-dom";
+import AuthPage from '../auth/authpage'
+import { Switch, Route, Router, } from "react-router-dom";
+import UseRoutes from '../../routes'
 import Base from '../../services';
 import { productLoaded, categoryLoaded } from '../../actions';
 import { connect } from 'react-redux';
+import './app.scss';
+import 'materialize-css'
+
 
 
 const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => {
@@ -23,15 +24,15 @@ const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => 
 			.then(data => categoryLoaded(data));
 	}, []);
 
+	const router = UseRoutes(false)
+
 	return (
 		<>
-			<AppHeader />
 			<Switch>
 				<>
+					<AppHeader />
 					<div className='Wrapper'>
-						<Route exact path="/cart" component={CartPage} />
-						<Route path="/product/:id" component={ProductPage} />
-						<Route exact path="/" component={MainPage} />
+						{router}
 					</div>
 				</>
 			</Switch>
