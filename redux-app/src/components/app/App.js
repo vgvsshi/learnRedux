@@ -23,7 +23,7 @@ const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => 
 			.then(data => categoryLoaded(data));
 	}, []);
 
-	return productItems.length > 0 && categoryItems.length > 0 ? (
+	return (
 		<>
 			<AppHeader />
 			<Switch>
@@ -36,8 +36,7 @@ const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => 
 				</>
 			</Switch>
 		</>
-	) :
-		(null)
+	)
 }
 const mapStateToProps = (state) => {
 	return {
