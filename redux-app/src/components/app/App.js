@@ -1,11 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import AppHeader from '../appHeader';
-import { MainPage, CartPage } from '../pages';
-import ProductPage from '../productdPage';
-import AuthPage from '../auth/authpage'
-import { Switch, Route, Router, } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import UseRoutes from '../../routes'
-import Base from '../../services';
 import { productLoaded, categoryLoaded } from '../../actions';
 import { connect } from 'react-redux';
 import './app.scss';
@@ -14,15 +10,6 @@ import 'materialize-css'
 
 
 const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => {
-
-	const serv = new Base();
-
-	useEffect(() => {
-		serv.getProducts()
-			.then(data => productLoaded(data));
-		serv.getCategoryList()
-			.then(data => categoryLoaded(data));
-	}, []);
 
 	const router = UseRoutes(false)
 
