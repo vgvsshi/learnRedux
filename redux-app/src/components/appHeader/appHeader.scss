@@ -20,19 +20,22 @@
 			display: flex;
 			justify-content: space-between;
 			font-size: 25px;
-		}
-		.badge {
-			width: 20px;
-			height: 20px;
-			background-color: grey;
-			border-radius: 50%;
-			position: absolute;
-			left: 335px;
-			top: 40px;
-			font-size: 15px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			li {
+				position: relative;
+				.badge {
+					width: 20px;
+					height: 20px;
+					background-color: grey;
+					border-radius: 50%;
+					position: absolute;
+					right: -20px;
+					bottom: 0px;
+					font-size: 15px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+			}
 		}
 	}
 }

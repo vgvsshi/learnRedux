@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 import { useHttp } from '../../hooks/http.hook'
 import { useMessage } from '../../hooks/message.hook'
 
 export const AuthPage = () => {
+	const auth = useContext(AuthContext)
 	const [form, setForm] = useState({ email: "", password: "" })
 	const { loading, request, error, clearError } = useHttp()
 	const message = useMessage()
@@ -28,11 +30,16 @@ export const AuthPage = () => {
 	const loginHandler = async () => {
 		try {
 			const data = await request('/api/auth/login', 'POST', { ...form })
+			auth.login(data.token, data.userId)
 			message(data.message)
 		} catch (e) {
 			form.password = ''
 		}
 	}
+
+	useEffect(() => {
+		window.M.updateTextFields()
+	}, [])
 
 	return (
 		<div className='row'>

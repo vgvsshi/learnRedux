@@ -6,23 +6,29 @@ import { productLoaded, categoryLoaded } from '../../actions';
 import { connect } from 'react-redux';
 import './app.scss';
 import 'materialize-css'
+import { useAuth } from '../../hooks/auth.hook'
+import { AuthContext } from '../../context/AuthContext';
 
 
 
 const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => {
 
-	const router = UseRoutes(false)
+	const { token, login, logOut, userId } = useAuth()
+	const isAuthenticated = !!token
+	const router = UseRoutes(isAuthenticated)
 
 	return (
 		<>
-			<Switch>
-				<>
-					<AppHeader />
-					<div className='Wrapper'>
-						{router}
-					</div>
-				</>
-			</Switch>
+			<AuthContext.Provider value={{ token, login, logOut, userId, isAuthenticated }}>
+				<Switch>
+					<>
+						<AppHeader />
+						<div className='Wrapper'>
+							{router}
+						</div>
+					</>
+				</Switch>
+			</AuthContext.Provider>
 		</>
 	)
 }
