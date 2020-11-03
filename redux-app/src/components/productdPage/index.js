@@ -1,33 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addedToCardWithAmount, productLoaded } from '../../actions';
 import { useParams, withRouter } from 'react-router-dom';
 import './productPage.scss';
 import Loader from '../loader';
+import { useHttp } from '../../hooks/http.hook'
+import { AuthContext } from '../../context/AuthContext';
 
 const ProductPage = ({ productItems, addedToCardWithAmount, match }) => {
 
 	const ItemId = useParams().id
-	const item = productItems.find(item => item._id === ItemId);
-	const { title, img, category, price, _id } = item;
+	const [chosenProd, setProd] = useState(null)
+	const { request, loading } = useHttp()
+	const getProdBiId = useCallback(async () => {
+		try {
+			const item = await request(`/api/products/${ItemId}`, 'GET', null)
+			setProd(item)
+		} catch (e) {
+			console.log(e)
+		}
+	}, [request, ItemId])
+	useEffect(() => {
+		getProdBiId()
+	}, [getProdBiId])
 	const [amount, setAmount] = useState(1);
 	const updateInputValue = (event) => {
 		console.log(amount)
 		setAmount(event.target.value);
-		console.log(ItemId)
-		console.log(productItems)
 	}
-	return item ? (
+	return !loading && chosenProd ? (
 		<div className='productWrapper'>
-			<img src={img} alt='alo'></img>
+			<img src={chosenProd.img} alt='alo'></img>
 			<div className='prodTitle'>
-				{title}
+				{chosenProd.title}
 			</div>
 			<div className='prodCategory'>
-				{category}
+				{chosenProd.category}
 			</div>
 			<div className='prodPrice'>
-				{price}$
+				{chosenProd.price}$
 			</div>
 			<div className='inc' onClick={() => { setAmount(amount + 1) }}>
 				+
@@ -37,7 +48,7 @@ const ProductPage = ({ productItems, addedToCardWithAmount, match }) => {
 				-
 			</div>
 			<button onClick={() => {
-				addedToCardWithAmount(_id, 1)
+				addedToCardWithAmount(chosenProd._id, amount)
 			}}>Добавить в корзину</button>
 		</div >
 	) : <Loader />

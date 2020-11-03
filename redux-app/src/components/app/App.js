@@ -23,11 +23,10 @@ const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => 
 		try {
 			const prodList = await request('/api/products', 'GET', null)
 			await productLoaded(prodList)
-			console.log(prodList)
 		} catch (e) {
 			console.log(e)
 		}
-	}, [token, request, productLoaded])
+	}, [request, productLoaded])
 
 	useEffect(() => {
 		getAllProd()
