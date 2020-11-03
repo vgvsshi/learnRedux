@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addedToCardWithAmount, productLoaded } from '../../actions';
-import { withRouter } from 'react-router-dom';
+import { useParams, withRouter } from 'react-router-dom';
 import './productPage.scss';
+import Loader from '../loader';
 
 const ProductPage = ({ productItems, addedToCardWithAmount, match }) => {
 
-
-	const item = productItems.find(item => +item.id === +match.params.id);
-	const { title, url, category, price, id } = item;
+	const ItemId = useParams().id
+	const item = productItems.find(item => item._id === ItemId);
+	const { title, img, category, price, _id } = item;
 	const [amount, setAmount] = useState(1);
 	const updateInputValue = (event) => {
 		console.log(amount)
 		setAmount(event.target.value);
+		console.log(ItemId)
+		console.log(productItems)
 	}
-	return (
+	return item ? (
 		<div className='productWrapper'>
-			<img src={url} alt='alo'></img>
+			<img src={img} alt='alo'></img>
 			<div className='prodTitle'>
 				{title}
 			</div>
@@ -34,10 +37,10 @@ const ProductPage = ({ productItems, addedToCardWithAmount, match }) => {
 				-
 			</div>
 			<button onClick={() => {
-				addedToCardWithAmount(id, amount)
+				addedToCardWithAmount(_id, 1)
 			}}>Добавить в корзину</button>
 		</div >
-	)
+	) : <Loader />
 }
 
 const mapStateToProps = (state) => {

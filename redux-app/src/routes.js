@@ -15,14 +15,12 @@ const UseRoutes = isAuthenticated => {
 				<Route path="/product/:id" component={ProductPage} />
 				<Route exact path="/" component={MainPage} />
 				<Route exact path="/addprod" component={AddPage} />
-				<Redirect to="/" />
 			</>
 		)
 		:
 		(
 			<>
 				<Route exact path="/auth" component={AuthPage} />
-				<Redirect to="/auth" />
 			</>
 		)
 }

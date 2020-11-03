@@ -26,8 +26,8 @@ const AddPage = () => {
 		window.M.updateTextFields()
 	}, [])
 	return (
-		<div className='row'>
-			<div className='col s8 offset-s2' style={{ paddingTop: '2rem' }}>
+		<div className="card green darken-3" style={{ padding: '2rem' }}>
+			<div className='col s8 offset-s2'>
 				<div className="input-field">
 					<input placeholder="Введите название товара" id="title" type="text" name="title" className="validate" onChange={changeHadler} value={form.title} />
 					<label htmlFor="first_name">Название товара</label>
@@ -46,7 +46,7 @@ const AddPage = () => {
 				</div>
 			</div>
 			<button className='btn yellow darken-4' onClick={addHandler} >Добавить продукт</button>
-		</div >
+		</div>
 	)
 }
 

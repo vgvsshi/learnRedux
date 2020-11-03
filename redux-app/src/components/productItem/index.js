@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 const ProductItem = ({ productItem, onAddToCard }) => {
 	return (
 		<div className='itemWrapper'>
-			<Link to={`/product/${productItem.id}`}>
+			<Link to={`/product/${productItem._id}`}>
 				<div className='itemTitle'>
 					{productItem.title}
 				</div>
-				<img src={productItem.url} alt="Диван"></img>
+				<img src={productItem.img} alt="Диван"></img>
 				<div className='itemCategory'>
 					Категория: {productItem.category}
 				</div>

@@ -7,13 +7,13 @@ import { connect } from 'react-redux';
 const AppHeader = ({ items }) => {
 	const auth = useContext(AuthContext)
 	let total = 0;
-	items.map((item) => {
-		return total = total + item.price * item.amount;
-	})
+	// items.map((item) => {
+	// 	return total = total + item.price * item.amount;
+	// })
 	let totalItems = 0;
-	items.map((item) => {
-		return totalItems = totalItems + item.amount
-	})
+	// items.map((item) => {
+	// 	return totalItems = totalItems + item.amount
+	// })
 	const logoutHandler = (event) => {
 		event.preventDefault()
 		auth.logOut()
