@@ -10,17 +10,16 @@ const UseRoutes = isAuthenticated => {
 	return isAuthenticated ?
 		(
 			<>
-
-				<Route exact path="/cart" component={CartPage} />
-				<Route path="/product/:id" component={ProductPage} />
-				<Route exact path="/" component={MainPage} />
-				<Route exact path="/addprod" component={AddPage} />
+				<Route exact path="/cart">{isAuthenticated ? <CartPage /> : <Redirect to='/auth' />}</Route >
+				<Route exact path="/product/:id">{isAuthenticated ? <ProductPage /> : <Redirect to='/' />}</Route >
+				<Route exact path="/">{isAuthenticated ? <MainPage /> : <Redirect to='/' />}</Route>
+				<Route exact path="/addprod">{isAuthenticated ? <AddPage /> : <Redirect to='/' />}</Route >
 			</>
 		)
 		:
 		(
 			<>
-				<Route exact path="/auth" component={AuthPage} />
+				<Route exact path="/auth">{isAuthenticated ? <Redirect to='/auth' /> : <AuthPage />}</Route>
 			</>
 		)
 }

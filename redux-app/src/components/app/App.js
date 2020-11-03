@@ -23,6 +23,11 @@ const App = ({ productLoaded, productItems, categoryItems, categoryLoaded }) => 
 		try {
 			const prodList = await request('/api/products', 'GET', null)
 			await productLoaded(prodList)
+			let categorys = []
+			prodList.map(item => {
+				categorys = [...new Set([...categorys, item.category])]
+			})
+			categoryLoaded(categorys)
 		} catch (e) {
 			console.log(e)
 		}

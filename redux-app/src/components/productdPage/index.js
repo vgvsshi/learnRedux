@@ -1,13 +1,12 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addedToCardWithAmount, productLoaded } from '../../actions';
 import { useParams, withRouter } from 'react-router-dom';
 import './productPage.scss';
 import Loader from '../loader';
 import { useHttp } from '../../hooks/http.hook'
-import { AuthContext } from '../../context/AuthContext';
 
-const ProductPage = ({ productItems, addedToCardWithAmount, match }) => {
+const ProductPage = ({ addedToCardWithAmount }) => {
 
 	const ItemId = useParams().id
 	const [chosenProd, setProd] = useState(null)
