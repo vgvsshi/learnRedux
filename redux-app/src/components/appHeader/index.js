@@ -29,6 +29,7 @@ const AppHeader = ({ items }) => {
 							<div className='navItem badge'>{totalItems}</div>
 						</li>
 						<li className='navItem'>Total: {total}$</li>
+						<li className='navItem'><Link to='/addprod'>Add product</Link></li>
 						<li className='navItem'>
 							<Link
 								to='/auth'

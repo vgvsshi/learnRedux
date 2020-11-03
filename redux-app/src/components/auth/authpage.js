@@ -50,7 +50,7 @@ export const AuthPage = () => {
 					<span className="card-title">Авторизация</span>
 					<div>
 						<div className="input-field">
-							<input placeholder="Введите Email" id="email" type="email" name="email" className="validate yellow-input" onChange={changeHadler} />
+							<input placeholder="Введите Email" id="email" type="email" name="email" className="validate yellow-input" onChange={changeHadler} value={form.email} />
 							<label htmlFor="first_name">Email</label>
 						</div>
 						<div className="input-field">

@@ -1,5 +1,6 @@
 {
 	"port": 5000,
 	"mongoURI": "mongodb+srv://vgvsshi:1234qwer@cluster0.jgwkd.mongodb.net/testShop?retryWrites=true&w=majority",
-	"jwtSecret": "vgvsshi"
+	"jwtSecret": "vgvsshi",
+	"baseUrl": "http://localhost:5000"
 }

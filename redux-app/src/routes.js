@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { MainPage, CartPage } from './components/pages';
 import ProductPage from './components/productdPage';
 import AuthPage from './components/auth/authpage'
+import AddPage from './components/addProduct/add'
 
 
 const UseRoutes = isAuthenticated => {
@@ -13,6 +14,7 @@ const UseRoutes = isAuthenticated => {
 				<Route exact path="/cart" component={CartPage} />
 				<Route path="/product/:id" component={ProductPage} />
 				<Route exact path="/" component={MainPage} />
+				<Route exact path="/addprod" component={AddPage} />
 				<Redirect to="/" />
 			</>
 		)
