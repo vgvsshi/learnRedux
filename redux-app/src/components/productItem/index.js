@@ -4,21 +4,22 @@ import { Link } from 'react-router-dom';
 
 const ProductItem = ({ productItem, onAddToCard }) => {
 	return (
-		<div class="row">
-			<div class="col s12 m7">
-				<div class="card">
+		<div className="row">
+			<div className="col s12 m7">
+				<div className="card">
 					<Link to={`/product/${productItem._id}`}>
-						<div class="card-image">
+						<div className="card-image">
 							<img src={productItem.img} />
-							<span class="card-title">{productItem.title}</span>
-						</div>
-						<div class="card-content">
-							<p>Категория: {productItem.category}.</p>
-						</div>
-						<div class="card-action">
-							<span>Цена: {productItem.price}$</span>
+							<span className="card-title">{productItem.title}</span>
 						</div>
 					</Link>
+					<div className="card-content">
+						<p>Категория: {productItem.category}.</p>
+					</div>
+					<div className="card-action">
+						<span>Цена: {productItem.price}$</span>
+					</div>
+					<button className='btn' onClick={onAddToCard}>В корзину</button>
 				</div>
 			</div>
 		</div>

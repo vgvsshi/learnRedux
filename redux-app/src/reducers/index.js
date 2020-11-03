@@ -21,14 +21,12 @@ const reducer = (state = initialState, action) => {
 			if (state.items.findIndex(item => item.id === newItem.id) !== -1) {
 				const clone = state.items.find(item => item.id === newItem.id)
 				const newCart = state.items.filter(item => item.id !== newItem.id);
-				clone.amount = clone.amount + 1
 				newCart.push(clone);
 				return {
 					...state,
 					items: newCart
 				};
 			} else {
-				newItem.amount = 1;
 				return {
 					...state,
 					items: [
@@ -42,14 +40,12 @@ const reducer = (state = initialState, action) => {
 			if (state.items.findIndex(item => item.id === nitem.id) !== -1) {
 				const clone = state.items.find(item => item.id === nitem.id)
 				const newCart = state.items.filter(item => item.id !== nitem.id);
-				clone.amount = clone.amount + action.amount / 1
 				newCart.push(clone);
 				return {
 					...state,
 					items: newCart
 				};
 			} else {
-				nitem.amount = action.amount / 1;
 				return {
 					...state,
 					items: [
@@ -70,7 +66,6 @@ const reducer = (state = initialState, action) => {
 			};
 		case 'AMOUNT_INC':
 			const incProd = state.items.find(prod => prod.id === action.payload);
-			incProd.amount = incProd.amount + 1;
 			const incCart = state.items.filter(item => item.id !== incProd.id);
 			incCart.push(incProd);
 			return {
@@ -80,7 +75,6 @@ const reducer = (state = initialState, action) => {
 		case 'AMOUNT_DEC':
 			const decProd = state.items.find(prod => prod.id === action.payload);
 			if (decProd.amount === 1) {
-				decProd.amount = 1;
 				const decCart = state.items.filter(item => item.id !== decProd.id);
 				decCart.push(decProd);
 				return {
@@ -88,7 +82,6 @@ const reducer = (state = initialState, action) => {
 					items: decCart
 				};
 			}
-			decProd.amount = decProd.amount - 1;
 			const decCart = state.items.filter(item => item.id !== decProd.id);
 			decCart.push(decProd);
 			return {
